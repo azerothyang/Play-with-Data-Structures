@@ -11,5 +11,5 @@ func main() {
 	arr.AddLast(2)
 	arr.AddLast(3)
 	arr.Add(0, 9)
-	fmt.Println(arr.GetData())
+	fmt.Println(arr.ToString())
 }

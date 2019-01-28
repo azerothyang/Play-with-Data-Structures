@@ -1,5 +1,7 @@
 package array
 
+import "strconv"
+
 type Array struct {
 	data []int
 	size int
@@ -50,7 +52,18 @@ func (arr *Array) Add(index int, ele int) {
 	arr.size++
 }
 
-//get data
+// get data
 func (arr *Array) GetData() []int {
 	return arr.data
+}
+
+// ToString is to return array
+func (arr *Array) ToString() string {
+	str := "Array: size = " + strconv.Itoa(arr.size) + "  , capacity = " + strconv.Itoa(arr.GetCapacity()) + "\n["
+	for i := 0; i < arr.size; i++ {
+		str += strconv.Itoa(arr.data[i]) + ","
+	}
+	str = str[:len(str)-1]
+	str += "]"
+	return str
 }
