@@ -57,13 +57,29 @@ func (arr *Array) GetData() []int {
 	return arr.data
 }
 
+// 获取index索引位置
+func (arr *Array) Get(index int) int {
+	if index < 0 || index >= arr.size {
+		panic("Get fail! Index is illegal.")
+	}
+	return arr.data[index]
+}
+
+// 获取index索引位置
+func (arr *Array) Set(index int, e int) {
+	if index < 0 || index >= arr.size {
+		panic("Get fail! Index is illegal.")
+	}
+	arr.data[index] = e
+}
+
 // ToString is to return array
 func (arr *Array) ToString() string {
 	str := "Array: size = " + strconv.Itoa(arr.size) + "  , capacity = " + strconv.Itoa(arr.GetCapacity()) + "\n["
 	for i := 0; i < arr.size; i++ {
-		str += strconv.Itoa(arr.data[i]) + ","
+		str += strconv.Itoa(arr.data[i]) + ", "
 	}
-	str = str[:len(str)-1]
+	str = str[:len(str)-2]
 	str += "]"
 	return str
 }
