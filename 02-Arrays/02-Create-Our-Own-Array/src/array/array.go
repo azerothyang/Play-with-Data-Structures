@@ -52,6 +52,20 @@ func (arr *Array) Add(index int, ele int) {
 	arr.size++
 }
 
+// 删除index位置元素，返回删除的元素
+func (arr *Array) Remove(index int) int {
+	if index >= arr.size || index < 0 {
+		panic("index is illegal")
+	}
+	removeEle := arr.data[index]
+	//当前元素后面的元素集体左移一位
+	for i := index + 1; i < arr.size; i++ {
+		arr.data[i-1] = arr.data[i]
+	}
+	arr.size--
+	return removeEle
+}
+
 // get data
 func (arr *Array) GetData() []int {
 	return arr.data
@@ -71,6 +85,26 @@ func (arr *Array) Set(index int, e int) {
 		panic("Get fail! Index is illegal.")
 	}
 	arr.data[index] = e
+}
+
+// 查找数组中是否有元素e
+func (arr *Array) Contains(e int) bool {
+	for i := 0; i < arr.size; i++ {
+		if arr.data[i] == e {
+			return true
+		}
+	}
+	return false
+}
+
+// 查找元素e对应的索引，如果没有返回-1
+func (arr *Array) Find(e int) int {
+	for i := 0; i < arr.size; i++ {
+		if arr.data[i] == e {
+			return i
+		}
+	}
+	return -1
 }
 
 // ToString is to return array
