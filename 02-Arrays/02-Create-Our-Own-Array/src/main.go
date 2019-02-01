@@ -21,6 +21,6 @@ func main() {
 	fmt.Println(arr.Find(1130))
 
 	fmt.Println(arr.ToString())
-	arr.Remove(2)
+	arr.RemoveElement(13130)
 	fmt.Println(arr.ToString())
 }

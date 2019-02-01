@@ -66,6 +66,22 @@ func (arr *Array) Remove(index int) int {
 	return removeEle
 }
 
+func (arr *Array) RemoveFirst() int {
+	return arr.Remove(0)
+}
+
+func (arr *Array) RemoveLast() int {
+	return arr.Remove(arr.size - 1)
+}
+
+// remove exist element
+func (arr *Array) RemoveElement(e int) {
+	index := arr.Find(e)
+	if index != -1 {
+		arr.Remove(index)
+	}
+}
+
 // get data
 func (arr *Array) GetData() []int {
 	return arr.data
