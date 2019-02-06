@@ -38,7 +38,8 @@ func (arr *Array) AddFirst(e int) {
 // 在数组指定位置插入元素
 func (arr *Array) Add(index int, ele int) {
 	if arr.size == arr.GetCapacity() {
-		panic("add element fail, capacity is full!")
+		arr.addCapacity()
+		//panic("add element fail, capacity is full!")
 	}
 	if index >= arr.GetCapacity() {
 		panic("index is larger than capacity!")
@@ -132,4 +133,15 @@ func (arr *Array) ToString() string {
 	str = str[:len(str)-2]
 	str += "]"
 	return str
+}
+
+// 翻倍容量
+func (arr *Array) addCapacity() {
+	capacity := arr.GetCapacity()
+	newData := make([]int, capacity*2)
+	// copy arr.data to new Data
+	for k, v := range arr.data {
+		newData[k] = v
+	}
+	arr.data = newData
 }
