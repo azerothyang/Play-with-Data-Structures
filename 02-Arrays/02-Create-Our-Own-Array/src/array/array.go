@@ -38,7 +38,7 @@ func (arr *Array) AddFirst(e int) {
 // 在数组指定位置插入元素
 func (arr *Array) Add(index int, ele int) {
 	if arr.size == arr.GetCapacity() {
-		arr.addCapacity()
+		arr.resize(arr.GetCapacity() * 2)
 		//panic("add element fail, capacity is full!")
 	}
 	if index >= arr.GetCapacity() {
@@ -64,6 +64,10 @@ func (arr *Array) Remove(index int) int {
 		arr.data[i-1] = arr.data[i]
 	}
 	arr.size--
+	if arr.size == arr.GetCapacity()/2 {
+		// 减少一半容积
+		arr.resize(arr.size)
+	}
 	return removeEle
 }
 
@@ -136,12 +140,11 @@ func (arr *Array) ToString() string {
 }
 
 // 翻倍容量
-func (arr *Array) addCapacity() {
-	capacity := arr.GetCapacity()
-	newData := make([]int, capacity*2)
+func (arr *Array) resize(newCapacity int) {
+	newData := make([]int, newCapacity)
 	// copy arr.data to new Data
-	for k, v := range arr.data {
-		newData[k] = v
+	for i := 0; i < arr.size; i++ {
+		newData[i] = arr.data[i]
 	}
 	arr.data = newData
 }
