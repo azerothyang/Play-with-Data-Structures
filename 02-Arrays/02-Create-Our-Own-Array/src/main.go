@@ -29,4 +29,6 @@ func main() {
 	fmt.Println(arr.ToString())
 	arr.RemoveElement(9)
 	fmt.Println(arr.ToString())
+	arr.RemoveElement(1130)
+	fmt.Println(arr.ToString())
 }

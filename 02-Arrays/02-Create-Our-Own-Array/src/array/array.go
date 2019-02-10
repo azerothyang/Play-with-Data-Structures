@@ -64,9 +64,9 @@ func (arr *Array) Remove(index int) int {
 		arr.data[i-1] = arr.data[i]
 	}
 	arr.size--
-	if arr.size == arr.GetCapacity()/2 {
+	if arr.size == arr.GetCapacity()/4 {
 		// 减少一半容积
-		arr.resize(arr.size)
+		arr.resize(arr.GetCapacity()/2)
 	}
 	return removeEle
 }
