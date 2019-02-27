@@ -2,7 +2,7 @@ package queue
 
 import "array"
 
-type queue interface {
+type QueueI interface {
 	GetIndex() int
 	Enqueue(interface{})
 	Dequeue() interface{}
