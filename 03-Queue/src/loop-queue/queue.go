@@ -50,14 +50,16 @@ func (q *Queue) GetEleNums() int {
 func (q *Queue) resize(size int) {
 	newData := make([]interface{}, size)
 	length := len(q.Data)
-	for i := 0; i < size; i++ {
+	var i = 0
+	for q.Tail%length != q.Front%length {
 		newData[i] = q.Data[q.Front%length]
+		i++
 		q.Front++
 	}
 	q.Data = newData
 	//重制指针位置
 	q.Front = 0
-	q.Tail = 0
+	q.Tail = i
 }
 
 func New(length int) *Queue {
