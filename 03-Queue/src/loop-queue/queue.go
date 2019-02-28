@@ -51,7 +51,7 @@ func (q *Queue) resize(size int) {
 	newData := make([]interface{}, size)
 	length := len(q.Data)
 	var i = 0
-	for q.Tail%length != q.Front%length {
+	for q.Tail != q.Front%length {
 		newData[i] = q.Data[q.Front%length]
 		i++
 		q.Front++
