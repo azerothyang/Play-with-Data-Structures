@@ -3,6 +3,7 @@ package test
 import (
 	"fmt"
 	"loop-queue"
+	"math/rand"
 	"queue"
 	"testing"
 	"time"
@@ -14,7 +15,7 @@ func TestQueue(t *testing.T) {
 	startTime := time.Now()
 	q := queue.New()
 	for i := 0; i < operations; i++ {
-		q.Enqueue(i)
+		q.Enqueue(rand.Int())
 	}
 	for i := 0; i < operations; i++ {
 		q.Dequeue()
@@ -26,7 +27,7 @@ func TestLoopQueue(t *testing.T) {
 	startTime := time.Now()
 	q := lqueue.New(2)
 	for i := 0; i < operations; i++ {
-		q.Enqueue(i)
+		q.Enqueue(rand.Int())
 	}
 	for i := 0; i < operations; i++ {
 		q.Dequeue()
