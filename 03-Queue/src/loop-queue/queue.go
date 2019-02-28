@@ -52,7 +52,7 @@ func (q *Queue) GetEleNums() int {
 }
 
 func (q *Queue) resize(size int) {
-	newData := make([]interface{}, size)
+	newData := make([]interface{}, size+1)
 	length := len(q.Data)
 	var i = 0
 	for q.Tail != q.Front%length {
