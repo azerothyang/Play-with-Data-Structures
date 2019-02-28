@@ -15,7 +15,7 @@ func (q *Queue) Enqueue(ele interface{}) {
 	//判断是否达到容积最大空间， 如果是则扩容
 
 	if (q.Tail+1)%cap(q.Data) == q.Front {
-		q.resize(len(q.Data) * 2)
+		q.resize(cap(q.Data) * 2)
 	}
 
 	//写入队列
@@ -28,6 +28,10 @@ func (q *Queue) Dequeue() interface{} {
 	if q.Front == q.Tail {
 		//如果队列为空，返回nil
 		return nil
+	}
+	if q.EleNums <= cap(q.Data)/4 {
+		//如果队列中的元素数量小于等于队列容积的1/4，则缩容到原容积的1/2，懒加载
+		q.resize(cap(q.Data) / 2)
 	}
 	ret := q.Data[q.Front]
 	q.Front = (q.Front + 1) % cap(q.Data)
