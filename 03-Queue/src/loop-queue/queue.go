@@ -34,6 +34,7 @@ func (q *Queue) Dequeue() interface{} {
 		q.resize(cap(q.Data) / 2)
 	}
 	ret := q.Data[q.Front]
+	q.Data[q.Front] = nil
 	q.Front = (q.Front + 1) % cap(q.Data)
 	q.EleNums--
 	return ret
