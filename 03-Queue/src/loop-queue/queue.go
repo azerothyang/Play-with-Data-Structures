@@ -1,5 +1,10 @@
 package lqueue
 
+import (
+	"fmt"
+	"strconv"
+)
+
 type Queue struct {
 	Data    []interface{} // data array
 	Front   int           // front position 队列最前面的一个元素索引
@@ -29,8 +34,8 @@ func (q *Queue) Dequeue() interface{} {
 		//如果队列为空，返回nil
 		return nil
 	}
-	if q.EleNums <= cap(q.Data)/4 {
-		//如果队列中的元素数量小于等于队列容积的1/4，则缩容到原容积的1/2，懒加载
+	if q.EleNums == cap(q.Data)/4 && cap(q.Data)/2 != 0 {
+		//如果队列中的元素数量小于等于队列容积的1/4，则缩容到原容积的1/2并且不为0，懒加载
 		q.resize(cap(q.Data) / 2)
 	}
 	ret := q.Data[q.Front]
@@ -65,6 +70,17 @@ func (q *Queue) resize(size int) {
 	//重制指针位置
 	q.Front = 0
 	q.Tail = i
+}
+
+// ToString is to return array
+func (q *Queue) ToString() string {
+	str := "Queue: size = " + strconv.Itoa(q.EleNums) + "  , capacity = " + strconv.Itoa(cap(q.Data)) + "\nfront ["
+	for i := 0; i < q.EleNums; i++ {
+		str += fmt.Sprintf("%v", q.Data[i%cap(q.Data)]) + ", "
+	}
+	str = str[:len(str)-2]
+	str += "] tail"
+	return str
 }
 
 func New(length int) *Queue {

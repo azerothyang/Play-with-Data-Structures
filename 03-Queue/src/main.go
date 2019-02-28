@@ -14,6 +14,7 @@ func main() {
 	q.Enqueue("z")
 	q.Enqueue("f")
 	q.Enqueue("g")
+	fmt.Println(q.ToString())
 	fmt.Println(q.Dequeue())
 	fmt.Println(q.Dequeue())
 	fmt.Println(q.Dequeue())
