@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"linknode"
+)
 
 func main() {
 	var sum int64 = 0
@@ -10,13 +13,13 @@ func main() {
 		i++
 	}
 	fmt.Println(sum)
-	//link := linknode.New()
-	//link.AddFirst("1")
-	//link.AddFirst("2")
-	//link.AddFirst("3")
-	//link.AddFirst("4")
-	//link.Add(1, "x")
-	//link.AddLast("z")
-	//fmt.Println(link.Node.Next.ToString())
-	//fmt.Println(222)
+	link := linknode.New()
+	link.AddFirst("1")
+	link.AddFirst("2")
+	link.AddFirst("3")
+	link.AddFirst("4")
+	link.Add(1, "x")
+	link.AddLast("z")
+	fmt.Println(link.Node.Next.ToString())
+	fmt.Println(222)
 }
