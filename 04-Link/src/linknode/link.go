@@ -4,7 +4,7 @@ import "fmt"
 
 type LinkedList struct {
 	DummyHead *Node
-	size int
+	size      int
 }
 
 type Node struct {
@@ -12,14 +12,14 @@ type Node struct {
 	Next *Node
 }
 
-func (ll *LinkedList) ToString() string {
+func (link *LinkedList) ToString() string {
 	var str string
 	node := ll.DummyHead
 	for node.Next != nil {
 		str += fmt.Sprintf("%v -> ", node.Next.E)
 		node = node.Next
 	}
-	return str[:len(str) - 4]
+	return str[:len(str)-4]
 }
 
 func New() *LinkedList {
@@ -67,7 +67,6 @@ func (link *LinkedList) Add(index int, ele interface{}) {
 	prev.Next = newNode
 	link.size++
 }
-
 
 func (link *LinkedList) AddLast(ele interface{}) {
 	link.Add(link.GetSize(), ele)
