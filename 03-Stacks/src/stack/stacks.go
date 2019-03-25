@@ -7,9 +7,9 @@ type Stack struct {
 
 // parentheses match cases
 var parentheses = map[int32]int32{
-	rune('{') : rune('}'),
-	rune('[') : rune(']'),
-	rune('(') : rune(')'),
+	rune('{'): rune('}'),
+	rune('['): rune(']'),
+	rune('('): rune(')'),
 }
 
 func New(cap int) *Stack {

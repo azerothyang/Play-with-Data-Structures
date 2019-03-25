@@ -3,8 +3,7 @@ package linknode
 import "fmt"
 
 type LinkedList struct {
-	Node *Node
-	Head *Node
+	DummyHead *Node
 	size int
 }
 
@@ -13,14 +12,22 @@ type Node struct {
 	Next *Node
 }
 
-func (nd *Node) ToString() string {
-	return fmt.Sprintln(nd.E)
+func (ll *LinkedList) ToString() string {
+	var str string
+	node := ll.DummyHead
+	for node.Next != nil {
+		str += fmt.Sprintf("%v -> ", node.Next.E)
+		node = node.Next
+	}
+	return str[:len(str) - 4]
 }
 
 func New() *LinkedList {
 	return &LinkedList{
-		nil,
-		nil,
+		&Node{
+			nil,
+			nil,
+		},
 		0,
 	}
 }
@@ -34,11 +41,11 @@ func (link *LinkedList) IsEmpty() bool {
 }
 
 func (link *LinkedList) AddFirst(ele interface{}) {
-	link.Node = &Node{
+	newNode := &Node{
 		ele,
-		link.Head,
+		link.DummyHead.Next,
 	}
-	link.Head = link.Node
+	link.DummyHead.Next = newNode
 	link.size++
 }
 
@@ -49,13 +56,8 @@ func (link *LinkedList) Add(index int, ele interface{}) {
 		return
 	}
 
-	if index == 0 {
-		link.AddFirst(ele)
-		return
-	}
-
-	prev := link.Head
-	for i := 1; i < index; i++ {
+	prev := link.DummyHead
+	for i := 0; i < index; i++ {
 		prev = prev.Next
 	}
 	newNode := &Node{

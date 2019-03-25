@@ -11,8 +11,7 @@ func main() {
 	link.AddFirst("2")
 	link.AddFirst("3")
 	link.AddFirst("4")
-	link.Add(1, "x")
+	link.Add(2, "x")
 	link.AddLast("z")
-	fmt.Println(link.Node.ToString())
-	//fmt.Println(222)
+	fmt.Println(link.ToString())
 }
