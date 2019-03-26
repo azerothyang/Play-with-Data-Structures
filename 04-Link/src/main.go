@@ -14,4 +14,7 @@ func main() {
 	link.Add(2, "x")
 	link.AddLast("z")
 	fmt.Println(link.ToString())
+	fmt.Println(link.GetLast())
+	fmt.Println(link.GetFirst())
+	fmt.Println(link.Get(2))
 }

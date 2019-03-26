@@ -71,3 +71,25 @@ func (link *LinkedList) Add(index int, ele interface{}) {
 func (link *LinkedList) AddLast(ele interface{}) {
 	link.Add(link.GetSize(), ele)
 }
+
+// get the index node value
+func (link *LinkedList) Get(index int) interface{} {
+	if index < 0 || index >= link.size {
+		return nil
+	}
+	cur := link.DummyHead.Next
+	for i := 0; i < index; i++ {
+		cur = cur.Next
+	}
+	return cur.E
+}
+
+// get first node value
+func (link *LinkedList) GetFirst() interface{} {
+	return link.Get(0)
+}
+
+// get last node value
+func (link *LinkedList) GetLast() interface{} {
+	return link.Get(link.size - 1)
+}
