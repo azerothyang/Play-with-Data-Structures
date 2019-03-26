@@ -14,7 +14,7 @@ type Node struct {
 
 func (link *LinkedList) ToString() string {
 	var str string
-	node := ll.DummyHead
+	node := link.DummyHead
 	for node.Next != nil {
 		str += fmt.Sprintf("%v -> ", node.Next.E)
 		node = node.Next
