@@ -93,3 +93,40 @@ func (link *LinkedList) GetFirst() interface{} {
 func (link *LinkedList) GetLast() interface{} {
 	return link.Get(link.size - 1)
 }
+
+// update the index node value
+func (link *LinkedList) Set(index int, e interface{}) {
+	if index < 0 || index >= link.size {
+		panic("index is out of range")
+	}
+	cur := link.DummyHead.Next
+	for i := 0; i < index; i++ {
+		cur = cur.Next
+	}
+	cur.E = e
+}
+
+// check linkList whether contains e
+func (link *LinkedList) Contains(e interface{}) bool {
+	cur := link.DummyHead.Next
+	for cur != nil {
+		if cur.E == e {
+			return true
+		}
+		cur = cur.Next
+	}
+	return false
+}
+
+// remove the index node
+func (link *LinkedList) Remove(index int) {
+	if index < 0 || index >= link.size {
+		panic("index is out of range")
+	}
+	prev := link.DummyHead
+	for i := 0; i < index-1; i++ {
+		prev = prev.Next
+	}
+	prev.Next = prev.Next.Next
+	link.size--
+}

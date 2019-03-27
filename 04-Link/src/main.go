@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"linknode"
+	"reflect"
 )
 
 func main() {
@@ -13,8 +14,10 @@ func main() {
 	link.AddFirst("4")
 	link.Add(2, "x")
 	link.AddLast("z")
+	link.Set(2, 3)
 	fmt.Println(link.ToString())
 	fmt.Println(link.GetLast())
 	fmt.Println(link.GetFirst())
-	fmt.Println(link.Get(2))
+	fmt.Println(link.Contains("k"))
+	fmt.Println(reflect.ValueOf(link.Get(2)).Kind() == reflect.Int)
 }
