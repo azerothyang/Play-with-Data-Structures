@@ -14,9 +14,9 @@ type Node struct {
 
 func (link *LinkedList) ToString() string {
 	var str string
-	node := link.DummyHead
-	for node.Next != nil {
-		str += fmt.Sprintf("%v -> ", node.Next.E)
+	node := link.DummyHead.Next
+	for node != nil {
+		str += fmt.Sprintf("%v -> ", node.E)
 		node = node.Next
 	}
 	return str[:len(str)-4]
@@ -124,9 +124,24 @@ func (link *LinkedList) Remove(index int) {
 		panic("index is out of range")
 	}
 	prev := link.DummyHead
-	for i := 0; i < index-1; i++ {
-		prev = prev.Next
+	for i := 0; i < index; i++ {
+		prev = (*prev).Next
 	}
-	prev.Next = prev.Next.Next
+	delNode := prev.Next
+	(*prev).Next = (*delNode).Next
+	delNode = nil // for gc
+	link.size--
+}
+
+// remove the index node, method2
+func (link *LinkedList) RemoveMethod2(index int) {
+	if index < 0 || index >= link.size {
+		panic("index is out of range")
+	}
+	cur := link.DummyHead.Next
+	for i := 0; i < index; i++ {
+		cur = (*cur).Next
+	}
+	*cur = *((*cur).Next)
 	link.size--
 }
