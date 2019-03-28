@@ -119,7 +119,7 @@ func (link *LinkedList) Contains(e interface{}) bool {
 }
 
 // remove the index node
-func (link *LinkedList) Remove(index int) {
+func (link *LinkedList) Remove(index int) Node {
 	if index < 0 || index >= link.size {
 		panic("index is out of range")
 	}
@@ -129,12 +129,12 @@ func (link *LinkedList) Remove(index int) {
 	}
 	delNode := prev.Next
 	(*prev).Next = (*delNode).Next
-	delNode = nil // for gc
 	link.size--
+	return *delNode
 }
 
 // remove the index node, method2
-func (link *LinkedList) RemoveMethod2(index int) {
+func (link *LinkedList) RemoveMethod2(index int) Node {
 	if index < 0 || index >= link.size {
 		panic("index is out of range")
 	}
@@ -142,6 +142,8 @@ func (link *LinkedList) RemoveMethod2(index int) {
 	for i := 0; i < index; i++ {
 		cur = (*cur).Next
 	}
+	delNode := *cur
 	*cur = *((*cur).Next)
 	link.size--
+	return delNode
 }
