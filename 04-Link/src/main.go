@@ -21,5 +21,5 @@ func main() {
 	fmt.Println(link.ToString())
 	fmt.Println(link.GetLast())
 	fmt.Println(link.GetFirst())
-	fmt.Println(link.Contains("hei yo"))
+	fmt.Println(link.Contains("hey yo"))
 }
